@@ -2,6 +2,25 @@
 
 Registrar todas as mudanças relevantes das Skills geridas neste repositório.
 
+## Agentic Workflow Governance [2.0.0] — 2026-10-11
+
+### Alterado
+- Separada a antiga camada única `Cérebro/Gestor` em uma hierarquia multinível: `Operador / Principal Humano → Coordenador → Gestor de Domínio → Executor`.
+- Coordenador passou a responder por arbitragem transversal, prioridades entre domínios, arquitetura, dependências e gates interdomínio; Gestores preservam autonomia para decidir o COMO dentro do próprio nicho.
+- Executores passaram a ser definidos por capacidade abstrata, com Work, Codex e equivalentes tratados como implementações possíveis, não requisitos conceituais.
+- Fontes de verdade passaram a ser descritas por categorias portáveis, mantendo Drive e GitHub apenas como exemplos de implementação.
+- Governança de ações deixou de usar “efeito externo” como critério automático de confirmação e passou a avaliar `escopo autorizado × reversibilidade × risco`.
+- Formalizados Handoff, auditoria de sucessor e sucessão como mecanismos normais de continuidade operacional.
+- Definido que sucessão de Gestor é validada pelo Coordenador e sucessão do próprio Coordenador é validada pelo Operador/Principal Humano.
+- Removida a duplicação do template interno da Delegation Context Skill; Agentic Workflow Governance mantém a interface de autoridade/roteamento/gates e a Delegation Context Skill mantém o formato vigente de delegação.
+- Revisada a precedência de autoridade para respeitar segurança/sistema, Operador, governança oficial do projeto, Coordenador e Gestor de Domínio.
+- A especificação canônica deixou de ser o anexo histórico imutável e passou a ser uma especificação versionada alinhada à Arquitetura de Trabalho Agentiva v2.0.
+- Atualizados metadados de interface, inventário `skills.json` e README.
+
+### Compatibilidade
+- Compatível com **Arquitetura de Trabalho Agentiva v2.0**.
+- Delegation Context Skill permanece em **1.1.0**; sua lógica interna não foi alterada nesta revisão.
+
 ## Delegation Context Skill [1.1.0] — 2026-10-11
 
 ### Alterado
