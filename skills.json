@@ -16,7 +16,8 @@
     {
       "name": "agentic-workflow-governance",
       "display_name": "Agentic Workflow Governance",
-      "version": "1.0.0",
+      "version": "2.0.0",
+      "compatible_architecture": "Arquitetura de Trabalho Agentiva 2.0",
       "native_spec": "skills/agentic-workflow-governance/SKILL.md",
       "canonical_source": "skills/agentic-workflow-governance/references/especificacao-canonica.md",
       "chatgpt_url": "https://chatgpt.com/skills?skill_id=6acbe3f484b48191a13bc6797c8b6bf1"
