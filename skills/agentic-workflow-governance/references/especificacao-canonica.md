@@ -1,479 +1,211 @@
-Quero criar e salvar NATIVAMENTE no ChatGPT uma habilidade chamada:
+# Especificação Canônica — Agentic Workflow Governance
 
-Agentic Workflow Governance
+**Versão:** 2.0.0  
+**Compatibilidade:** Arquitetura de Trabalho Agentiva v2.0  
+**Escopo:** governança global, vendor-neutral, sem contexto específico de projeto.
 
-OBJETIVO DA SKILL
+## 1. Objetivo
 
-Esta Skill deve aplicar a governança global da arquitetura:
+Aplicar governança transversal a workflows agentivos, definindo papéis, autoridade, roteamento por capacidade, fontes de verdade, gates, critérios de parada, continuidade, handoffs e sucessão.
 
-“Arquitetura de workflow agentivo com orquestração de agentes e engenharia de contexto.”
+A Skill deve preservar o princípio:
 
-Ela NÃO deve conter contexto específico de um projeto.
-Ela deve definir COMO o sistema trabalha de forma transversal.
+> **Centralizar coordenação e arbitragem; descentralizar decisões de domínio; especializar execução.**
 
-A Skill deve ser usada quando houver:
-- organização de trabalho entre agentes;
-- escolha entre Work e Codex;
-- delegação para executor;
-- definição de autoridade;
-- mudança de fase;
-- definição ou revisão de gates;
-- coordenação entre Drive, GitHub, chat e evidências locais;
-- execução potencialmente sensível, irreversível ou fora do escopo;
-- dúvida sobre quem deve decidir ou executar;
-- necessidade de evitar duplicação, expansão de escopo ou burocracia desnecessária.
+## 2. Hierarquia de autoridade
 
-==================================================
-1. DEFINIÇÃO CENTRAL
-==================================================
+```text
+PRINCIPAL / OPERADOR HUMANO
+            │
+       COORDENADOR
+            │
+      GESTORES DE DOMÍNIO
+            │
+         EXECUTORES
+```
 
-A arquitetura oficial é:
+A hierarquia define autoridade, não obriga toda ação a passar por todas as camadas.
 
-“Arquitetura de workflow agentivo com orquestração de agentes e engenharia de contexto.”
+### Principal / Operador Humano
+Autoridade soberana. Decide intenção final, mudanças constitutivas, exceções materiais e assuntos que ultrapassem a autoridade do Coordenador. Valida a sucessão do Coordenador.
 
-O sistema possui uma camada central de decisão e múltiplos braços de execução especializados.
+### Coordenador
+Autoridade agentiva transversal. Arbitra prioridades entre domínios, conflitos, dependências, arquitetura e gates interdomínio. Coordena sucessões de Gestores e escala ao Operador quando necessário. Não substitui o Gestor na decisão do domínio.
 
-Estrutura conceitual:
+### Gestor de Domínio
+Responsável pelo COMO dentro de um nicho. Decide estratégia e abordagem do domínio, escolhe executores, define contexto e critérios, revisa resultados e escala questões transversais ao Coordenador.
 
-CÉREBRO / GESTOR
-    ├── WORK
-    └── CODEX
+### Executor
+Executa o escopo autorizado, consulta fontes, produz resultados/evidências, informa bloqueios e para quando a decisão necessária ultrapassa sua autoridade. Recomendação não equivale a decisão.
 
-O Gestor escolhe diretamente o executor mais adequado.
+## 3. Autonomia por domínio
 
-Não adotar como regra:
+Regra operacional:
 
-Cérebro → Work → Codex
+> **O Coordenador decide o transversal. O Gestor decide o domínio. O Executor executa o autorizado.**
 
-Work não é intermediário obrigatório para Codex.
+O sistema deve evitar centralização excessiva e autonomia fragmentada. Um Gestor com mandato claro pode rotear diretamente para seus executores sem nova validação do Coordenador a cada microdecisão.
 
-==================================================
-2. PAPÉIS
-==================================================
+## 4. Roteamento por capacidade
 
-CÉREBRO / GESTOR
+Executores são papéis abstratos. Selecionar pela natureza dominante da tarefa.
 
-Responsável por:
-- intenção;
-- contexto;
-- prioridades;
-- decisões;
-- arquitetura;
-- critérios de sucesso;
-- gates;
-- autorização;
-- escolha do executor;
-- revisão do resultado;
-- decisão do próximo passo.
+Capacidades comuns:
+- generalista multissistema;
+- engenharia de software;
+- criativo;
+- analítico;
+- operacional.
 
-O Gestor pode executar tarefas simples diretamente, mas não deve virar executor operacional universal.
+Work, Codex e ferramentas equivalentes são implementações possíveis, não componentes obrigatórios da arquitetura.
 
-WORK
+Tarefas híbridas devem ser decompostas quando competências diferentes forem materialmente necessárias. Não criar cadeias entre executores sem benefício concreto.
 
-Executor generalista e multissistema.
+## 5. Limites de autoridade
 
-Usar preferencialmente para:
-- pesquisa;
-- análise;
-- navegador;
-- Google Drive;
-- documentos;
-- planilhas;
-- apresentações;
-- apps conectados;
-- consolidação de evidências;
-- tarefas multietapas;
-- fluxos que cruzem diferentes serviços.
-
-CODEX
-
-Executor especializado em engenharia de software.
-
-Usar preferencialmente para:
-- repositórios;
-- edição de código;
-- debugging;
-- refatoração;
-- terminal;
-- testes;
-- lint;
-- build;
-- dependências;
-- revisão de diff;
-- Git;
-- CI/CD;
-- GitHub Actions;
-- investigação técnica centrada em código.
-
-OPERADOR HUMANO
-
-Responsável por:
-- decisões sensíveis;
-- ações locais físicas;
-- acessos;
-- autenticações;
-- permissões;
-- credenciais quando apropriado;
-- validações visuais ou físicas;
-- ações irreversíveis;
-- aprovação quando exigida pela governança.
-
-==================================================
-3. ROTEAMENTO
-==================================================
-
-A Skill deve ajudar a escolher o executor adequado.
-
-Princípio:
-
-Se o núcleo da tarefa é engenharia de software:
-Gestor → Codex
-
-Se o núcleo da tarefa é operação generalista, pesquisa, arquivos, navegador ou apps:
-Gestor → Work
-
-Se a tarefa for híbrida:
-o Gestor deve decompô-la em subtarefas coerentes e encaminhar cada uma ao executor adequado.
-
-Exemplo:
-
-Gestor
- ├── Codex → implementação técnica
- └── Work → documentação / operação externa
-
-O Gestor reconcilia os resultados.
-
-Não criar cadeia Work → Codex ou Codex → Work sem necessidade concreta.
-
-==================================================
-4. LIMITES DE AUTORIDADE
-==================================================
-
-Executores NÃO devem, por conta própria:
-
-- alterar arquitetura;
-- promover fase;
-- declarar gate concluído;
-- declarar vencedor em comparação;
-- fazer merge em main;
-- publicar;
+### Executor não pode autonomamente
+- alterar arquitetura ou governança;
 - expandir escopo;
-- alterar decisão vigente;
-- substituir critério definido;
-- executar ação sensível;
-- criar novos agentes ou estruturas sem justificativa.
+- substituir decisão ou critério vigente;
+- promover gate fora do mandato;
+- executar ação materialmente sensível sem autorização aplicável;
+- criar estrutura permanente sem autoridade;
+- transformar recomendação em decisão.
 
-Executores podem:
-- executar o escopo autorizado;
-- investigar dentro do escopo;
-- testar;
-- retornar evidências;
-- apontar bloqueios;
-- recomendar próximo passo.
+### Gestor não pode autonomamente
+- decidir matéria transversal reservada ao Coordenador;
+- invadir outro domínio;
+- alterar arquitetura global por conveniência local;
+- escalar ao humano decisões rotineiras que já cabem ao domínio.
 
-Recomendação não equivale a decisão.
+### Coordenador não pode
+- microgerenciar o domínio;
+- substituir Gestores sem necessidade;
+- assumir autoridade reservada ao Operador.
 
-==================================================
-5. CRITÉRIO DE PARADA
-==================================================
+## 6. Governança de ações
 
-A execução deve parar e retornar ao Gestor quando houver:
+Avaliar por:
 
+> **escopo autorizado × reversibilidade × risco**
+
+Executar diretamente quando a ação estiver dentro do escopo, for reversível/baixo impacto e tiver risco controlado.
+
+Escalar quando houver expansão de escopo, irreversibilidade relevante, risco material, mudança de acesso/política/arquitetura ou decisão humana/transversal pendente.
+
+“Efeito externo” não é, isoladamente, motivo suficiente para nova confirmação.
+
+## 7. Critérios de parada
+
+Parar diante de:
 - premissa errada;
 - dado essencial ausente;
-- conflito entre instruções;
-- acesso insuficiente;
-- arquivo necessário ausente;
+- conflito material;
+- acesso ou arquivo insuficiente;
 - ferramenta inadequada;
-- decisão arquitetural pendente;
-- risco de segurança;
+- decisão transversal/arquitetural pendente;
+- risco material de segurança, privacidade ou conformidade;
 - ação irreversível não autorizada;
-- resultado que exigiria mudança de escopo;
-- necessidade de enfraquecer validação;
-- necessidade de aumentar timeout ou alterar critérios apenas para “fazer funcionar”;
-- necessidade de repetir experimento sem autorização;
-- ambiguidade material sobre a direção correta.
+- necessidade de expandir escopo ou enfraquecer critérios;
+- ambiguidade material de autoridade ou direção.
 
 Não improvisar para contornar governança.
 
-==================================================
-6. FONTES DA VERDADE
-==================================================
+## 8. Fontes de verdade
 
-Aplicar como padrão:
+Usar categorias portáveis:
+- repositório operacional persistente;
+- repositório técnico versionado;
+- canal de decisão/coordenação;
+- evidência local/transitória;
+- Skills e políticas persistentes.
 
-DRIVE
-= estado e contexto operacional
+Produtos como Google Drive e GitHub são exemplos. Não usar chat como única morada de estado crítico persistente. Não duplicar fontes sem declarar autoridade.
 
-GITHUB
-= estado técnico versionado
+## 9. Engenharia de contexto
 
-CHAT
-= decisões, autorizações, raciocínio e gatilhos
+Fornecer somente contexto relevante, separar persistente de transitório, explicitar fonte/autoridade/restrições e evitar excesso de histórico.
 
-EVIDÊNCIA LOCAL
-= resultados que não devem automaticamente ir para nuvem ou versionamento
+Skills carregam comportamento estável; briefings carregam o que muda na tarefa atual.
 
-Regras:
+## 10. Relação com Delegation Context Skill
 
-- não duplicar código, diffs ou documentação técnica completa no Drive se GitHub já for a fonte de verdade;
-- não usar chat como única morada de estado crítico persistente;
-- não versionar evidência local sensível por padrão;
-- não misturar fontes sem indicar qual é autoritativa.
+Agentic Workflow Governance decide:
+- quem deve decidir e executar;
+- quais limites se aplicam;
+- quais fontes consultar;
+- quais gates e critérios de parada existem.
 
-==================================================
-7. AÇÕES REVERSÍVEIS E SENSÍVEIS
-==================================================
+Delegation Context Skill estrutura a delegação formal segundo sua versão vigente.
 
-Ações de leitura, pesquisa e inspeção reversíveis podem ser executadas diretamente quando estiverem dentro do escopo.
+A governança não deve duplicar ou congelar os campos internos do template de delegação.
 
-Exemplos:
-- ler repositório;
-- pesquisar commits;
-- inspecionar arquivos;
-- consultar documentação;
-- analisar testes;
-- ler Drive;
-- revisar resultados.
+## 11. Continuidade, Handoff e sucessão
 
-Pedir confirmação humana apenas quando necessário para ações como:
+Fluxo:
 
-- merge;
-- exclusão;
-- publicação;
-- envio de mensagem externa;
-- mudança de acesso ou permissões;
-- alteração de conta;
-- configuração sensível;
-- ação financeira;
-- exposição de dados;
-- mudança de produção;
-- decisão estratégica relevante;
-- ação irreversível.
+```text
+papel vigente → estado persistente → handoff → sucessor → auditoria → validação → assunção
+```
 
-Não criar fricção pedindo confirmação para leitura ou pesquisa segura.
+Handoff transporta estado necessário, não histórico integral.
 
-==================================================
-8. ANTI-BUROCRACIA
-==================================================
+O sucessor deve classificar pontos como:
+- CONFIRMADO;
+- PROVÁVEL / HISTÓRICO;
+- NÃO CONFIRMADO;
+- CONFLITO.
 
-Não criar automaticamente:
-- novos agentes;
-- novos chats;
-- novos documentos;
-- novas camadas;
-- novos processos;
-- novos checkpoints;
+Validação:
+- sucessão de Gestor → Coordenador;
+- sucessão do Coordenador → Operador / Principal Humano.
 
-a menos que exista benefício concreto.
+Não permitir autovalidação do sucessor.
 
-O princípio é:
+## 12. Anti-burocracia
 
-“Especialização deve reduzir fricção, não aumentar coordenação.”
+Não criar agentes, chats, documentos, camadas, taxonomias, processos ou checkpoints sem benefício concreto.
 
-Se um único executor puder realizar a tarefa com qualidade e segurança, preferir a solução mais simples.
+A autoridade deve ficar no nível mais baixo capaz de decidir com segurança. Não exigir passagem pelo Coordenador quando um Gestor já possui mandato claro. Não pedir autorização humana para leitura/pesquisa ou ação segura já autorizada.
 
-==================================================
-9. CONTEXTO
-==================================================
+## 13. Precedência e conflitos
 
-Aplicar engenharia de contexto:
+Precedência padrão:
+1. segurança, sistema e restrições obrigatórias;
+2. decisão explícita vigente do Operador;
+3. constituição/instruções/governança oficial vigente do projeto;
+4. decisão do Coordenador dentro de autoridade transversal;
+5. decisão do Gestor dentro de autoridade de domínio;
+6. esta Skill como governança global subsidiária;
+7. preferência do Executor.
 
-- fornecer ao executor somente o contexto relevante;
-- evitar despejar histórico desnecessário;
-- separar regras persistentes de dados transitórios;
-- usar Skills para regras estáveis;
-- usar briefing para o que muda naquela tarefa;
-- apontar claramente fontes de verdade;
-- indicar restrições e critérios de parada.
+Documentos especializados vigentes devem ser respeitados conforme a governança do projeto. Não misturar versões conflitantes silenciosamente.
 
-A Skill deve reconhecer que excesso de contexto também pode degradar a execução.
+## 14. Portabilidade
 
-==================================================
-10. RELAÇÃO COM DELEGATION CONTEXT SKILL
-==================================================
+A Skill não deve presumir Work, Codex, Drive, GitHub ou qualquer fornecedor específico. Deve mapear papéis abstratos às capacidades disponíveis na plataforma.
 
-Esta Skill NÃO substitui a Delegation Context Skill.
+Se a plataforma não possuir agentes separados, representar os papéis com contextos, sessões ou procedimentos equivalentes.
 
-Agentic Workflow Governance:
-define governança, papéis, autoridade, roteamento e fontes de verdade.
+## 15. Critérios de acionamento
 
-Delegation Context Skill:
-define como estruturar uma delegação formal.
+Considerar a Skill relevante quando houver:
+- organização de trabalho entre múltiplas IAs/agentes;
+- dúvida sobre quem decide ou executa;
+- conflito ou dependência entre domínios;
+- escolha de executor;
+- definição/revisão de gate;
+- governança de fontes de verdade;
+- ação sensível ou potencialmente fora do escopo;
+- decisão sobre continuidade, Handoff ou sucessão;
+- risco de expansão de autoridade, duplicação ou burocracia.
 
-Quando houver delegação formal, as duas podem atuar juntas.
+Pode atuar silenciosamente antes de delegações formais. Não deve ser acionada para conversa trivial sem implicação de workflow/governança.
 
-Ordem conceitual:
+## 16. Compatibilidade e manutenção
 
-1. Agentic Workflow Governance decide:
-   - quem deve executar;
-   - quais limites se aplicam;
-   - quais fontes consultar;
-   - quando parar.
+A versão 2.0.0 desta Skill corresponde à Arquitetura de Trabalho Agentiva v2.0.
 
-2. Delegation Context Skill estrutura:
-   - Ação;
-   - Resultado esperado;
-   - Raciocínio recomendado;
-   - Comando / Briefing.
+Mudanças estruturais em papéis, autoridade, gates, handoffs, fontes de verdade ou critérios de parada exigem revisão conjunta da arquitetura e desta Skill.
 
-==================================================
-11. COMPORTAMENTO EM CONFLITOS
-==================================================
-
-Se houver conflito entre:
-
-- arquitetura global;
-- regra específica do projeto;
-- decisão vigente do Gestor;
-- instrução do executor;
-
-usar esta precedência:
-
-1. instruções de segurança e sistema;
-2. decisão explícita vigente do Gestor para o projeto;
-3. governança global;
-4. regra local do projeto;
-5. preferência operacional do executor.
-
-Se o conflito continuar materialmente ambíguo:
-parar e solicitar decisão.
-
-==================================================
-12. ESCOPO DA SKILL
-==================================================
-
-Esta Skill é GLOBAL.
-
-Ela deve:
-- funcionar em diferentes projetos;
-- não carregar nomes, branches, arquivos ou decisões específicas de um projeto;
-- não presumir que todos os projetos possuem GitHub ou Drive;
-- aplicar apenas os componentes relevantes em cada contexto.
-
-Se um projeto não tiver código:
-Codex pode não ser necessário.
-
-Se um projeto não usar Drive:
-não forçar Drive.
-
-A arquitetura deve ser aplicada de forma proporcional.
-
-==================================================
-13. EXEMPLOS DE DECISÃO
-==================================================
-
-Exemplo 1
-
-Usuário:
-“Corrija esse parser, rode os testes e revise o diff.”
-
-Resultado esperado da governança:
-→ Codex é o executor preferencial.
-
-Exemplo 2
-
-Usuário:
-“Pesquise os concorrentes, leia meus documentos e monte uma apresentação.”
-
-Resultado:
-→ Work é o executor preferencial.
-
-Exemplo 3
-
-Usuário:
-“Implemente a feature e depois atualize a documentação operacional no Drive.”
-
-Resultado:
-→ decompor:
-Codex para implementação;
-Work para documentação operacional;
-Gestor revisa o conjunto.
-
-Exemplo 4
-
-Executor encontra necessidade de alterar arquitetura.
-
-Resultado:
-→ parar;
-→ explicar a necessidade;
-→ retornar ao Gestor;
-→ não alterar por conta própria.
-
-Exemplo 5
-
-Uma leitura segura do GitHub é necessária.
-
-Resultado:
-→ executar diretamente;
-→ não pedir autorização desnecessária.
-
-==================================================
-14. O QUE A SKILL NÃO DEVE FAZER
-==================================================
-
-Não deve:
-- transformar toda conversa em workflow formal;
-- exigir Work ou Codex para tarefas simples;
-- criar burocracia;
-- impedir o Gestor de responder diretamente;
-- confundir recomendação com autoridade;
-- presumir ferramentas inexistentes;
-- repetir regras de delegação em excesso;
-- carregar contexto específico de projetos;
-- tornar cada ação dependente de confirmação humana.
-
-==================================================
-15. DESCRIÇÃO SUGERIDA
-==================================================
-
-“Aplica a governança de uma arquitetura de workflow agentivo, definindo papéis, roteamento entre Gestor, Work e Codex, limites de autoridade, fontes de verdade, critérios de parada, ações sensíveis e princípios anti-burocracia.”
-
-==================================================
-16. CRITÉRIOS DE ACIONAMENTO
-==================================================
-
-A Skill deve ser considerada relevante quando houver perguntas ou tarefas como:
-
-- “quem deve executar isso?”
-- “uso Work ou Codex?”
-- “delegue isso”
-- “qual o próximo gate?”
-- “esse executor pode decidir isso?”
-- “posso fazer merge?”
-- “onde salvo esse estado?”
-- “qual é a fonte de verdade?”
-- “esse agente pode continuar?”
-- “preciso pedir autorização?”
-- “como organizo esse projeto?”
-- “como dividir essa tarefa?”
-- “qual braço de execução usar?”
-
-Também pode ser usada silenciosamente quando for necessário aplicar governança antes de uma delegação.
-
-Não deve ser acionada para conversas triviais sem implicação de workflow ou governança.
-
-==================================================
-17. SALVAMENTO
-==================================================
-
-Antes de salvar:
-
-1. mostre um resumo da Skill;
-2. confirme que ela preserva:
-   - Gestor como autoridade central;
-   - Work e Codex como braços paralelos;
-   - roteamento direto;
-   - limites de autoridade;
-   - fontes da verdade;
-   - critérios de parada;
-   - distinção entre ação reversível e sensível;
-   - anti-burocracia;
-   - complementaridade com Delegation Context Skill.
-
-Depois:
-
-3. salve como Skill NATIVA do ChatGPT;
-4. informe claramente quando a criação estiver concluída;
-5. se o criador de Skills exigir estrutura diferente, adapte o formato sem alterar a lógica;
-6. se alguma regra essencial não puder ser representada, pare antes de salvar e informe exatamente qual limitação existe.
+GitHub é a fonte versionada oficial da Skill. Uma instalação nativa em plataforma é uma implementação separada e deve ser verificada após atualização da fonte.
