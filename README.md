@@ -1,163 +1,67 @@
-# Delegation Context Skill
+# Gestão de Skills
 
-Skill reutilizável para estruturar delegações entre uma IA coordenadora e um executor, separando contexto executivo, recursos necessários, nível de raciocínio recomendado e briefing operacional.
+Fonte oficial das Skills **Delegation Context Skill** e **Agentic Workflow Governance**.
+O endereço histórico do repositório foi mantido para preservar os links existentes.
 
-## O que é
+## Inventário
 
-A **Delegation Context Skill** foi criada para melhorar a passagem de tarefas entre uma IA que pensa, coordena ou decide e outra IA, agente, Work, ferramenta ou executor que realizará a tarefa.
+| Skill | Versão | Fonte oficial | Instalação nativa |
+| --- | --- | --- | --- |
+| Delegation Context Skill | 1.1.0 | [SKILL.md](SKILL.md) | [ChatGPT](https://chatgpt.com/skills?skill_id=6acbd243c8088191b2e61b170ec6779c) |
+| Agentic Workflow Governance | 1.0.0 | [Especificação canônica](skills/agentic-workflow-governance/references/especificacao-canonica.md) e [SKILL.md](skills/agentic-workflow-governance/SKILL.md) | [ChatGPT](https://chatgpt.com/skills?skill_id=6acbe3f484b48191a13bc6797c8b6bf1) |
 
-Ela adiciona uma camada curta e executiva antes do prompt operacional, chamada **Informações adicionais**.
+[skills.json](skills.json) registra caminhos e versões para conferência.
 
-A lógica central é:
+## Autoridade e gestão
 
-> **Informações adicionais = o operador entende a delegação.**  
-> **Comando / Briefing = o executor entende como executar.**
+Em 11/10/2026, o usuário atribuiu a este chat a função de **Gestor de Skills**, responsável por criar, manter e gerir alterações destas habilidades.
 
-Isso evita dois problemas comuns:
+- GitHub é a fonte oficial versionada das especificações, pacotes nativos e histórico de alterações.
+- ChatGPT mantém as instalações nativas utilizadas nas conversas.
+- Não há necessidade de documento, índice ou cópia de gestão no Drive.
+- O usuário mantém a autoridade sobre decisões sensíveis e mudanças de intenção. A função de Gestor de Skills não concede autoridade sobre outros projetos.
+- As alterações de Skills são executadas dentro das instruções e autorizações vigentes do usuário; conflitos materiais são apresentados antes de mudar a lógica.
+- O salvamento no GitHub não atualiza automaticamente a instalação no ChatGPT. As duas etapas devem ser verificadas.
 
-1. o operador receber apenas um bloco técnico longo sem entender o que será feito, quais recursos serão necessários ou qual resultado deve esperar;
-2. o executor receber apenas um resumo superficial, sem contexto suficiente para executar corretamente.
+## Como as Skills se complementam
 
-## Onde se aplica
+**Agentic Workflow Governance** define papéis, roteamento direto Gestor → Work/Codex, limites de autoridade, fontes da verdade, ações sensíveis e critérios de parada. É global e não contém contexto operacional de projeto específico.
 
-Use esta skill em fluxos como:
-
-- chat gestor → agente especializado;
-- chat coordenador → Work;
-- IA planejadora → IA executora;
-- humano → agente de execução;
-- sistemas multiagente;
-- IA → ferramenta de automação;
-- IA → navegador/computer use;
-- IA → agente de pesquisa;
-- IA → agente de desenvolvimento;
-- IA → agente de documentos;
-- IA → agente financeiro, jurídico, comercial ou operacional;
-- qualquer cenário em que uma entidade **decide como a tarefa deve ser conduzida** e outra **executa**.
-
-Ela é especialmente útil quando a tarefa exige arquivos, conectores, permissões, ferramentas específicas, nível de raciocínio adequado ou possui risco relevante de retrabalho se a delegação estiver incompleta.
-
-## Quando não usar
-
-A skill não precisa ser aplicada a toda resposta.
-
-Ela pode ser dispensada quando:
-
-- não existe delegação;
-- o próprio chat fará a tarefa imediatamente;
-- a tarefa é simples e não há outro executor;
-- o usuário pediu apenas uma resposta, opinião ou explicação direta.
-
-## Estrutura padrão
-
-Antes do prompt destinado ao executor, o coordenador apresenta:
+**Delegation Context Skill** estrutura a delegação formal, nesta ordem:
 
 ### Informações adicionais
 
-Campos centrais:
+**Ação:** descrição executiva.
 
-- **Ação:** resumo executivo do que será feito.
-- **Resultado esperado:** o que deve existir, estar concluído, configurado, analisado ou devolvido ao final.
+**Resultado esperado:** resultado final esperado.
 
-Campos opcionais, somente quando agregarem valor real:
-
-- **Modelo / raciocínio recomendado**
-- **Ferramentas / conectores**
-- **Arquivos / documentos / pastas**
-- **Dependências / pré-requisitos**
-- **Permissões / acessos / ação humana**
-- **Limitações conhecidas**
-- **Cuidados para evitar execução incorreta**
-
-Se nenhum desses campos adicionais for necessário:
-
-> **Informações adicionais: nenhuma.**
-
-Depois vem:
+**Raciocínio recomendado:** Low, Medium, High, Extra High ou Maximum — justificativa curta e prática.
 
 ### Comando / Briefing
 
-Aqui ficam as instruções completas destinadas ao executor: contexto, critérios, passos, restrições, validações, entregáveis e regras operacionais.
+Instruções completas necessárias ao executor.
 
-## Princípio de não duplicação
+Os três campos são sempre obrigatórios, inclusive em tarefas simples. Modelo, ferramentas, arquivos, dependências, permissões, limitações e cuidados continuam opcionais. Usar o menor nível suficiente; não duplicar passos e validações nas Informações adicionais; não gerar briefing final enquanto existir bloqueio relevante.
 
-**Informações adicionais não são um segundo briefing.**
+As Skills não substituem uma à outra e não precisam transformar conversas triviais em workflow formal.
 
-Elas existem para ajudar o operador a entender a delegação. O detalhamento de execução pertence ao briefing.
+## Fluxo de manutenção
 
-Inclua um campo apenas se ele mudar a forma como o operador deve interpretar, preparar, autorizar ou executar a delegação.
+1. Ler a fonte canônica e a decisão vigente do usuário.
+2. Preparar a alteração mínima, preservando regras obrigatórias, autoridade e critérios de parada.
+3. Validar estrutura, coerência das referências, exemplos e eventuais mudanças de comportamento.
+4. Salvar a fonte no GitHub, atualizar versão quando necessário e registrar a alteração no [CHANGELOG.md](CHANGELOG.md).
+5. Atualizar a Skill nativa existente, sem criar uma instalação duplicada.
+6. Conferir os arquivos salvos nos dois ambientes e informar resultado ou bloqueio com precisão.
 
-## Interrupção antes da delegação
+Não prometer acompanhamento automático de mudanças externas sem uma automação configurada.
 
-A skill também inclui uma regra de qualidade: se o coordenador identificar premissa ruim, dado insuficiente, ferramenta inadequada, dependência não resolvida, risco relevante, conflito de instruções ou alta probabilidade de retrabalho, ele deve **parar antes de produzir o briefing final**.
+## Estrutura e compatibilidade
 
-Fluxo recomendado:
+A Delegation Context Skill permanece na raiz, com `SKILL.md`, metadados em `agents/` e ícone em `assets/`.
 
-1. explicar objetivamente o problema;
-2. indicar por que continuar seria inadequado;
-3. propor correção ou alternativa;
-4. solicitar decisão humana quando necessário;
-5. somente então gerar a delegação corrigida.
+A Agentic Workflow Governance fica em `skills/agentic-workflow-governance/`, com sua especificação canônica completa em `references/`.
 
-A skill não deve transformar uma direção ruim em um briefing bem formatado.
+`prompt-mestre.md` é uma exportação do corpo do `SKILL.md` da Delegation Context Skill para uso em outros chats. Deve ser regenerado junto com a fonte, sem manter lógica divergente. O [instalador-curto.md](instalador-curto.md) aponta para a fonte vigente; [exemplos.md](exemplos.md) demonstra o comportamento.
 
-## Modelo e nível de raciocínio
-
-O campo de modelo/raciocínio é **opcional**.
-
-Use quando a escolha alterar materialmente:
-
-- qualidade;
-- confiabilidade;
-- custo;
-- tempo;
-- risco de erro;
-- capacidade de planejamento.
-
-É especialmente relevante para estratégia, auditoria, arquitetura de informação, análise financeira complexa, planejamento técnico e tarefas com alto custo de retrabalho.
-
-### Portabilidade entre plataformas
-
-Nem toda IA permite alterar tecnicamente o nível de raciocínio.
-
-A skill distingue:
-
-**Modo informativo**  
-`Raciocínio recomendado: alto.`
-
-Use quando o coordenador só puder recomendar a configuração ao operador.
-
-**Modo acionável**  
-`Defina o esforço de raciocínio como alto antes da execução.`
-
-Use apenas quando a plataforma, API ou ferramenta realmente oferecer um mecanismo para alterar essa configuração.
-
-**Nunca afirme que alterou modelo, modo ou nível de raciocínio se a plataforma não oferecer controle real para isso.**
-
-Atalhos de interface, comandos iniciados por `/` e nomes específicos de modos não devem ser tratados como universais. Eles podem variar entre plataformas, planos e versões.
-
-## Ideia de uso
-
-A skill foi pensada para reduzir perda de contexto, retrabalho e delegações incompletas.
-
-Ela cria uma interface clara entre três papéis:
-
-1. **Coordenador** — pensa, decide, organiza e valida a direção.
-2. **Operador** — entende o que será delegado e autoriza ou fornece recursos quando necessário.
-3. **Executor** — recebe um briefing completo e realiza a tarefa.
-
-O objetivo é tornar a passagem entre esses papéis previsível e reutilizável, independentemente da IA ou ferramenta utilizada.
-
-## Arquivos do repositório
-
-- `README.md` — conceito, contexto de uso e governança da skill.
-- `prompt-mestre.md` — prompt completo para instalar a skill em outro chat ou IA.
-- `instalador-curto.md` — instrução curta para ambientes que conseguem acessar este repositório diretamente.
-- `exemplos.md` — exemplos práticos de aplicação.
-- `CHANGELOG.md` — histórico de versões.
-
-## Fonte oficial
-
-Este repositório deve ser tratado como a fonte oficial da skill.
-
-Cópias em outros locais podem ser usadas para consulta, mas alterações permanentes devem ser consolidadas primeiro aqui e registradas no histórico de versões.
+A especificação canônica da governança preserva o conteúdo integral do anexo original. Sua seção de salvamento se refere à criação/manutenção da habilidade, e não a uma tarefa a repetir toda vez que a Skill é usada.

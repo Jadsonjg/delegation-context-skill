@@ -8,7 +8,7 @@
 
 **Resultado esperado:** relatório comparativo com critérios, evidências, riscos, custos e recomendação final.
 
-**Modelo / raciocínio recomendado:** alto, porque a tarefa exige síntese de múltiplas fontes e comparação de trade-offs.
+**Raciocínio recomendado:** High — exige síntese de múltiplas fontes e comparação de trade-offs.
 
 **Ferramentas / conectores:** acesso à web.
 
@@ -26,6 +26,8 @@ Pesquise os fornecedores A, B e C. Compare preço, segurança, integrações, su
 
 **Resultado esperado:** PDF pronto para apresentação ao cliente.
 
+**Raciocínio recomendado:** Medium — produção técnica com modelo e conteúdo aprovados.
+
 **Arquivos / documentos:** usar o modelo visual aprovado e o texto final anexado.
 
 **Cuidados:** não alterar o conteúdo aprovado; mudanças devem ser apenas de diagramação.
@@ -38,7 +40,13 @@ Crie o documento final a partir dos arquivos anexos...
 
 ## Exemplo 3 — Tarefa simples
 
-**Informações adicionais: nenhuma.**
+### Informações adicionais
+
+**Ação:** converter uma lista de contatos para CSV.
+
+**Resultado esperado:** CSV com as colunas Nome, E-mail e Telefone, preservando os dados fornecidos.
+
+**Raciocínio recomendado:** Low — conversão simples e determinística.
 
 ### Comando / Briefing
 
@@ -66,7 +74,9 @@ A skill impede que um prompt incompleto seja enviado apenas para seguir adiante.
 
 **Resultado esperado:** proposta de arquitetura com riscos, dependências e alternativas.
 
-**Modelo / raciocínio recomendado:** alto. A plataforma atual não permite que eu altere tecnicamente esse nível; selecione-o manualmente antes da execução, se disponível.
+**Raciocínio recomendado:** Extra High — arquitetura complexa com dependências e alto custo de erro.
+
+**Limitações conhecidas:** esta é uma recomendação; sem controle técnico disponível, não afirmar que o nível foi alterado.
 
 ### Comando / Briefing
 
@@ -82,9 +92,9 @@ Revise a arquitetura descrita abaixo...
 
 **Resultado esperado:** comparação quantitativa e qualitativa entre três alternativas.
 
-**Modelo / raciocínio recomendado:** alto.
+**Raciocínio recomendado:** Medium — comparação de três cenários com critérios definidos.
 
-**Dependências / pré-requisitos:** configurar o parâmetro nativo de esforço de raciocínio para nível alto antes da chamada.
+**Dependências / pré-requisitos:** configurar o mecanismo nativo de esforço de raciocínio correspondente à recomendação somente se a API realmente oferecer esse controle; não inventar parâmetros ou equivalências.
 
 ### Comando / Briefing
 

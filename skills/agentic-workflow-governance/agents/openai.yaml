@@ -1,0 +1,15 @@
+interface:
+  display_name: Agentic Workflow Governance
+  short_description: Governança, autoridade e roteamento entre agentes
+  default_prompt: Use $agentic-workflow-governance para definir o executor adequado,
+    os limites de autoridade, as fontes da verdade e os critérios de parada desta
+    tarefa.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

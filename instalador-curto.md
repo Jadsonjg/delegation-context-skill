@@ -1,28 +1,20 @@
 # Instalador curto — Delegation Context Skill
 
-Use esta instrução quando a IA ou o chat tiver acesso à web ou ao GitHub e puder consultar este repositório diretamente.
+Adote a **Delegation Context Skill** deste repositório. Leia integralmente o `SKILL.md` da raiz antes de aplicá-la. Para importação em um chat, `prompt-mestre.md` contém o mesmo corpo em Markdown.
 
----
+Aplicar somente ao preparar delegação formal, comando, briefing ou handoff para outro executor. Não acionar apenas porque existe uma tarefa normal no chat.
 
-Adote a **Delegation Context Skill** disponível neste repositório.
+Preservar:
+1. **Informações adicionais** antes de **Comando / Briefing**, sem renomear os blocos.
+2. **Ação**, **Resultado esperado** e **Raciocínio recomendado** sempre obrigatórios.
+3. Somente **Low**, **Medium**, **High**, **Extra High** e **Maximum**, usando o menor nível que preserve a qualidade necessária, com justificativa curta.
+4. Os outros campos são opcionais e só aparecem quando úteis.
+5. Não duplicar o briefing nas Informações adicionais.
+6. Parar antes da delegação diante de bloqueio relevante, explicar o problema e a correção necessária, solicitar ação humana somente quando necessária e emitir o briefing final apenas depois da resolução.
+7. Não ampliar autoridade, transformar recomendações em permissões ou criar estrutura sem benefício concreto.
+8. Não afirmar alteração real de modelo/raciocínio sem controle técnico e sem efetivamente realizá-la.
 
-Fonte oficial:
+Se não conseguir acessar a fonte, solicitar seu conteúdo. Não reconstruir parcialmente a Skill por suposição.
+Ler ou aplicar instruções no chat não equivale a instalar uma Skill nativa; só declarar instalação concluída depois de salvamento nativo verificado.
 
-- Repositório: `Jadsonjg/delegation-context-skill`
-- Arquivo principal: `prompt-mestre.md`
-
-Leia integralmente `prompt-mestre.md` antes de aplicar a skill.
-
-Depois de carregá-lo, passe a usá-lo sempre que você estiver preparando uma tarefa que será executada por outro chat, agente, Work, ferramenta, automação, sistema multiagente ou executor humano.
-
-Preserve especialmente estas regras:
-
-1. apresentar **Informações adicionais** antes do **Comando / Briefing**;
-2. usar **Ação** e **Resultado esperado** como campos centrais;
-3. incluir modelo/raciocínio, ferramentas, arquivos, dependências, permissões, limitações e cuidados somente quando forem realmente necessários;
-4. não duplicar o briefing dentro de Informações adicionais;
-5. interromper antes da delegação quando houver premissa inadequada, informação insuficiente, ferramenta errada, dependência não resolvida, risco relevante ou alta probabilidade de retrabalho;
-6. recomendar nível de raciocínio somente quando isso afetar materialmente a qualidade da execução;
-7. nunca afirmar que alterou modelo ou esforço de raciocínio se a plataforma não oferecer um controle técnico real para isso.
-
-Se você não conseguir acessar o repositório ou ler `prompt-mestre.md`, informe isso claramente e solicite que o conteúdo do Prompt Mestre seja fornecido no chat. Não tente reconstruir a skill parcialmente por suposição.
+Quando for necessário definir executor, autoridade, fontes ou gates, consultar também `skills/agentic-workflow-governance/SKILL.md`.

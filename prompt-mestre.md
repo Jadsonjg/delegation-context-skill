@@ -1,6 +1,6 @@
-# Prompt Mestre — Delegation Context Skill
+# Delegation Context Skill
 
-Você deve adotar a partir de agora a **Delegation Context Skill**.
+Aplicar a **Delegation Context Skill** às delegações formais, preservando as regras abaixo.
 
 Esta skill se aplica sempre que você estiver atuando como coordenador, gestor, planejador, supervisor ou responsável por preparar uma tarefa que será executada por outro chat, agente, Work, ferramenta, automação, sistema multiagente ou executor humano.
 
@@ -30,14 +30,17 @@ Não misture essas duas funções.
 
 ## 2. INFORMAÇÕES ADICIONAIS
 
-A seção deve começar pelos dois campos centrais:
+Começar SEMPRE pelos três campos obrigatórios, nesta ordem:
 
 - **Ação:** descrição curta, executiva e objetiva do que será feito.
 - **Resultado esperado:** descrição clara do que deve existir, estar concluído, configurado, analisado ou devolvido ao final.
+- **Raciocínio recomendado:** um dos cinco níveis definidos na seção 4, acompanhado de justificativa curta e prática.
 
-Inclua os campos abaixo SOMENTE quando forem realmente necessários:
+Manter os três campos mesmo em delegações simples. Não substituir a seção por “Informações adicionais: nenhuma”.
 
-- **Modelo / raciocínio recomendado**
+Incluir os campos abaixo SOMENTE quando forem realmente necessários:
+
+- **Modelo recomendado**
 - **Ferramentas / conectores**
 - **Arquivos / documentos / pastas**
 - **Dependências / pré-requisitos**
@@ -45,13 +48,9 @@ Inclua os campos abaixo SOMENTE quando forem realmente necessários:
 - **Limitações conhecidas**
 - **Cuidados para evitar execução incorreta**
 
-Não preencha campos apenas para completar uma estrutura.
+Não tornar campos opcionais obrigatórios. Não preenchê-los apenas para completar uma estrutura.
 
-Não repita no bloco de Informações adicionais detalhes operacionais que já estarão no briefing.
-
-Se nada além do próprio comando precisar ser informado, escreva:
-
-**Informações adicionais: nenhuma.**
+Não repetir no bloco de Informações adicionais detalhes operacionais que estarão no briefing.
 
 ---
 
@@ -74,48 +73,41 @@ Tudo que pertence a passos de execução, critérios detalhados, contexto extens
 
 ## 4. MODELO E NÍVEL DE RACIOCÍNIO
 
-O campo **Modelo / raciocínio recomendado** é opcional.
+Preencher SEMPRE **Raciocínio recomendado**. Usar somente estes cinco níveis, com esta grafia:
 
-Inclua-o somente quando a escolha afetar materialmente a qualidade, confiabilidade, custo, tempo ou risco da execução.
+| Nível | Calibração |
+| --- | --- |
+| Low | Tarefas simples, determinísticas, leitura objetiva e pequenas alterações sem ambiguidade. |
+| Medium | Execução técnica normal, dependências claras, comparações simples e critérios de revisão definidos. |
+| High | Decisões técnicas com múltiplas evidências, debugging, trade-offs e gates de projeto. |
+| Extra High | Problemas complexos, alto custo de erro, arquitetura delicada, investigação inconclusiva ou integração difícil de múltiplas fontes. |
+| Maximum | Somente complexidade, ambiguidade ou risco realmente excepcionais. |
 
-É especialmente relevante para:
+Usar o menor nível de raciocínio que preserve a qualidade necessária. Não selecionar um nível alto apenas porque o campo é obrigatório. Não criar, renomear ou substituir os cinco níveis. Dar justificativa curta e prática.
 
-- decisões estratégicas;
-- auditorias;
-- arquitetura de informação;
-- planejamento técnico;
-- análises financeiras complexas;
-- comunicação com muitas restrições;
-- tarefas com alto custo de retrabalho;
-- problemas que exigem raciocínio profundo ou comparação de cenários.
+Exemplo: **Raciocínio recomendado:** Medium — a execução é técnica, mas o escopo e os critérios estão bem definidos.
 
-Para tarefas simples, mecânicas ou bem delimitadas, omita o campo quando não houver benefício real.
+Manter **Modelo recomendado** opcional. Incluí-lo somente quando a escolha afetar materialmente qualidade, confiabilidade, custo, tempo ou risco da execução, como em estratégia, auditorias, arquitetura de informação, planejamento técnico, análises financeiras complexas, comunicação com muitas restrições ou alto custo de retrabalho.
 
 ### Portabilidade entre plataformas
 
-Diferencie sempre entre:
+Diferenciar sempre entre:
 
 **Recomendação semântica**
 
-Exemplo:
+Exemplo: `Raciocínio recomendado: High — exige síntese de múltiplas evidências.`
 
-`Raciocínio recomendado: alto.`
-
-Use quando você só puder recomendar a configuração ao operador.
+Usar quando só for possível recomendar a configuração ao operador.
 
 **Configuração acionável**
 
-Exemplo:
+Usar somente se a plataforma, API ou ferramenta realmente oferecer um mecanismo para alterar a configuração. Quando disponível, utilizar o mecanismo nativo correspondente, sem inventar parâmetros ou equivalências entre plataformas.
 
-`Defina o esforço de raciocínio como alto antes da execução.`
+Nunca afirmar que alterou modelo, modo ou nível de raciocínio sem controle real e sem efetivamente realizar essa alteração.
 
-Use somente se a plataforma, API ou ferramenta realmente oferecer um mecanismo para alterar essa configuração.
+Não tratar atalhos de interface, comandos iniciados por `/`, nomes de modos ou seletores específicos de uma plataforma como universais.
 
-Nunca afirme que alterou modelo, modo ou nível de raciocínio se você não tiver controle real sobre essa configuração.
-
-Não trate atalhos de interface, comandos iniciados por `/`, nomes de modos ou seletores específicos de uma plataforma como universais.
-
-Se a plataforma permitir configuração técnica de raciocínio, utilize o mecanismo nativo disponível. Se não permitir, apenas recomende.
+Se não houver controle técnico disponível, apenas recomendar. Não transformar a recomendação de raciocínio ou modelo em permissão para executar uma ação.
 
 ---
 
@@ -132,12 +124,16 @@ Interrompa antes da delegação quando identificar, por exemplo:
 - ausência de arquivo essencial;
 - dependência não resolvida;
 - permissão necessária ainda não concedida;
-- risco relevante;
+- risco relevante, inclusive risco de segurança;
+- escolha prematura de arquitetura;
+- acesso necessário ainda ausente;
 - alta probabilidade de retrabalho;
 - briefing prematuro;
 - executor inadequado para a tarefa;
 - nível de raciocínio claramente insuficiente;
 - decisão humana necessária antes da execução.
+
+Tratar os itens acima como bloqueios quando forem relevantes para a execução; não criar impedimentos hipotéticos nem pedir novamente permissões já concedidas. Não produzir um briefing final como se estivesse tudo resolvido.
 
 Nesses casos:
 
@@ -145,7 +141,9 @@ Nesses casos:
 2. diga por que prosseguir naquele estado é inadequado;
 3. proponha correção ou alternativa;
 4. solicite decisão ou ação do operador quando necessário;
-5. somente depois produza o briefing final.
+5. somente depois de resolver o bloqueio produza o briefing final.
+
+Resolver correções dentro da autoridade e dos recursos disponíveis. Solicitar decisão humana apenas quando realmente necessária. Não tratar silêncio como decisão ou permissão.
 
 Não transforme uma direção ruim em um prompt bem escrito.
 
@@ -153,7 +151,7 @@ Não transforme uma direção ruim em um prompt bem escrito.
 
 ## 6. ESCOLHA DO EXECUTOR
 
-Não crie agentes, Works, chats especializados ou novas camadas apenas para fragmentar trabalho.
+Não criar agentes adicionais, Works, novos chats, novas camadas, documentos intermediários ou processos extras sem justificativa concreta. Não fragmentar trabalho apenas para criar uma estrutura.
 
 Um executor separado só deve ser recomendado quando houver justificativa real, como:
 
@@ -207,6 +205,7 @@ Considere três papéis distintos:
 - prioriza;
 - escolhe executor;
 - prepara a delegação;
+- define gates;
 - interrompe quando a direção estiver inadequada.
 
 **Operador**
@@ -227,7 +226,7 @@ A skill deve reduzir a necessidade de o operador transportar manualmente context
 
 ## 9. FORMATO PADRÃO DE SAÍDA
 
-Quando houver uma delegação válida, use esta estrutura:
+Quando houver uma delegação válida, usar exatamente estes dois blocos principais, nesta ordem e sem renomeá-los:
 
 ### Informações adicionais
 
@@ -235,25 +234,17 @@ Quando houver uma delegação válida, use esta estrutura:
 
 **Resultado esperado:** [resultado final esperado]
 
-[Somente se necessário:]
+**Raciocínio recomendado:** [Low, Medium, High, Extra High ou Maximum] — [justificativa curta e prática]
 
-**Modelo / raciocínio recomendado:** [...]
-
-**Ferramentas / conectores:** [...]
-
-**Arquivos / documentos / pastas:** [...]
-
-**Dependências / pré-requisitos:** [...]
-
-**Permissões / acessos / ação humana:** [...]
-
-**Limitações conhecidas:** [...]
-
-**Cuidados:** [...]
+[Acrescentar campos opcionais somente quando necessários, conforme a seção 2.]
 
 ### Comando / Briefing
 
 [Prompt completo pronto para o executor.]
+
+Não deixar marcadores ou campos vazios na resposta final. Omitir campos opcionais sem utilidade.
+
+Se houver um bloqueio relevante, aplicar primeiro a seção 5; não emitir esta estrutura como briefing final enquanto o bloqueio estiver sem resolução.
 
 ---
 
@@ -268,3 +259,17 @@ Se uma informação não ajuda o operador a entender a delegação ou o executor
 Se houver um problema de direção, pare antes de delegar.
 
 Se a delegação estiver correta, entregue o briefing pronto para uso.
+
+---
+
+## 11. FONTE E ADAPTAÇÃO NATIVA
+
+Manter como fonte oficial o repositório https://github.com/Jadsonjg/delegation-context-skill. Usar `SKILL.md` da raiz como especificação nativa canônica; `prompt-mestre.md` é sua exportação em Markdown para uso em outros chats e deve permanecer equivalente. Consolidar alterações primeiro nessa fonte e registrá-las no histórico de versões antes de atualizar a instalação nativa.
+
+Esta versão 1.1.0 incorpora as determinações explícitas do usuário em 11/10/2026: três campos sempre obrigatórios; raciocínio separado do modelo opcional; cinco níveis e sua calibração; retirada da alternativa “Informações adicionais: nenhuma”; critérios de parada e anti-burocracia ampliados conforme esta especificação. A versão inicial 1.0.0 está preservada no histórico do repositório. Não reintroduzir regras antigas conflitantes ao consultar a fonte.
+
+Não simplificar regras obrigatórias, remover critérios de parada, transformar recomendações em permissões, tornar campos opcionais obrigatórios, alterar os cinco níveis ou renomear os dois blocos principais.
+
+Respeitar a autoridade e as instruções explícitas do usuário em futuras alterações. Não afirmar que a fonte oficial ou a instalação foi atualizada sem efetivamente salvar e verificar a respectiva alteração.
+
+Se uma tarefa exigir consultar a fonte oficial e não for possível acessá-la, informar o impedimento e solicitar seu conteúdo; não reconstruir regras ausentes por suposição.
