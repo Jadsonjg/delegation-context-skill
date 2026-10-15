@@ -12,6 +12,7 @@ Registrar todas as mudanças relevantes das Skills geridas neste repositório.
 - Sinalização obrigatória da primeira ativação, mudança, override e retorno, incluindo nível, significado, como alterar e resumo da escala; sem repetir banner continuamente.
 - O fluxo inicial verifica sinalização inclusive em configuração de estado e uso conjunto com outras Skills.
 - Atualizados metadados, fonte canônica e inventário, preservando a instalação nativa existente.
+- Instalação nativa 1.1.0 conferida: mesma identidade, sem duplicata; ícone regenerado pela plataforma e pacote final alinhados à fonte.
 - Mantidas as regras de dez níveis, veracidade, evidência/status, autoridade, proporcionalidade, eficiência e compatibilidade. As outras duas Skills não foram alteradas.
 
 ### Validação

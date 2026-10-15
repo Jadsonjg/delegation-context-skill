@@ -941,4 +941,3 @@ Princípio atualizado: “Se o usuário escolheu ter uma Skill de criticidade di
 Preservar: criticidade não é discordância; 10/10 pode aprovar boa decisão; criticidade não concede autoridade nem substitui raciocínio; alta criticidade não exige resposta longa; baixa criticidade não elimina obrigações superiores; Agentic Workflow Governance governa autoridade; Delegation Context Skill governa a estrutura da delegação.
 
 Antes de salvar esta revisão, reexecutar os testes originais e A–H. Ao finalizar, informar versão, entrada automática 6/10 por gatilhos médios/fracos, baseline persistente no escopo, sinalização das transições e limitações reais de persistência.
-
