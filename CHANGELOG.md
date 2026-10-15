@@ -19,6 +19,7 @@ Registrar todas as mudanças relevantes das Skills geridas neste repositório.
 - Executados os 17 cenários obrigatórios, com respostas observadas em contextos isolados e sequências de tarefas.
 - Incluídas consulta efetiva de fonte sintética, expiração em duas sequências e recuperação de padrão de projeto em contexto novo.
 - Resultado: 17 aprovados. Calibração dos dez níveis, preservação da fonte e integridade das Skills existentes também conferidas.
+- Instalação nativa 1.0.0 concluída e verificada, com uma única Skill; textos e valores de interface preservados. Ícone e metadados de interface gerados pela plataforma incluídos no pacote versionado.
 - [Evidências e limites da validação](tests/nivel-de-criticidade/v1.0.0.md).
 
 ## Agentic Workflow Governance [2.0.0] — 2026-10-11

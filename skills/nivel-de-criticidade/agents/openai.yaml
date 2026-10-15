@@ -1,4 +1,14 @@
 interface:
-  display_name: "Nível de Criticidade"
-  short_description: "Regula de 1 a 10 o rigor crítico sem oposição artificial"
-  default_prompt: "Use $nivel-de-criticidade para analisar esta proposta em criticidade 8/10 somente nesta decisão, respeitando evidências, autoridade e proporcionalidade."
+  display_name: Nível de Criticidade
+  short_description: Regula de 1 a 10 o rigor crítico sem oposição artificial
+  default_prompt: Use $nivel-de-criticidade para analisar esta proposta em criticidade
+    8/10 somente nesta decisão, respeitando evidências, autoridade e proporcionalidade.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

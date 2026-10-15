@@ -34,8 +34,8 @@
       "native_spec": "skills/nivel-de-criticidade/SKILL.md",
       "canonical_source": "skills/nivel-de-criticidade/references/especificacao-canonica.md",
       "validation_report": "tests/nivel-de-criticidade/v1.0.0.md",
-      "native_status": "validated_pending_installation",
-      "chatgpt_url": null
+      "native_status": "installed_verified",
+      "chatgpt_url": "https://chatgpt.com/skills?skill_id=6ad15379a0888191a8ff569f84eed566"
     }
   ]
 }
