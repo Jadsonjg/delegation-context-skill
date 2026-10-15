@@ -1,15 +1,19 @@
 ---
 name: nivel-de-criticidade
-description: "Regula de 1 a 10 o rigor adversarial aplicado à análise de premissas, fatos, propostas, decisões, planos, execuções e resultados, sem confundir criticidade com discordância, autoridade, profundidade de raciocínio ou severidade do tom. Usar quando o usuário definir criticidade (“criticidade 8/10”, “nível 8” em contexto), pedir mais/menos contraponto, red team, falsificação de proposta, análise crítica ou revisão rigorosa, redefinir padrão ou perguntar o nível ativo. Pode operar silenciosamente quando houver nível legitimamente vigente no escopo. Resolver prioridade e expiração do nível sem inventar número ausente, promover preferência temporária a permanente ou impor template universal."
+description: "Regula de 1 a 10 o rigor adversarial sem confundir criticidade com discordância, autoridade, raciocínio ou tom. Acionar por comandos explícitos, contraponto, red team e pedidos comuns de revisão, análise, opinião, validação ou decisão: “revise isso”, “o que você acha?”, “está bom?”, “faz sentido?”, “procure falhas”, “analise os riscos”, “me ajude a decidir” e equivalentes. Gatilhos médios e fracos estabelecem automaticamente baseline 6/10 no escopo, salvo nível vigente com precedência, sem perguntar qual nível usar. Continuar nas análises seguintes mesmo sem novo gatilho. Sinalizar primeira ativação, mudança, override e retorno ao baseline com nível, significado, como alterar e resumo da escala; não repetir aviso sem transição. Preservar expiração dos overrides, escopo e persistência apenas realmente suportada. Também usar para redefinir ou consultar criticidade."
 ---
 
 # Nível de Criticidade
 
-**Versão:** 1.0.0
+**Versão:** 1.1.0
 
 **Compatibilidade:** Arquitetura de Trabalho Agentiva v2.0; Agentic Workflow Governance v2.0.0; Delegation Context Skill v1.1.0, respeitando as versões vigentes e a autoridade aplicável.
 
 Aplicar rigor adversarial proporcional, global e vendor-neutral. Esta Skill regula comportamento analítico; não configura o parâmetro técnico de raciocínio do modelo.
+
+### Ciclo obrigatório por resposta relevante ou configuração de estado
+
+Resolver nível e escopo → verificar se houve ativação/transição → emitir a sinalização completa exigida na seção 20 quando houver evento → analisar → preservar baseline e expirar somente o override aplicável. A sinalização também vale em respostas que apenas configuram ou salvam um nível, na primeira ativação por comando explícito ou gatilho forte, e quando outras Skills forem usadas junto; não é exclusiva dos gatilhos de entrada 6/10. Se houver várias situações com escopos independentes na mesma resposta, deixar claro o nível e o significado de cada uma, incluindo a orientação de alteração e a escala, sem omitir uma ativação por causa do formato da análise ou delegação.
 
 ## 1. DEFINIÇÃO
 
@@ -245,31 +249,53 @@ A criticidade deve influenciar a detecção do momento em que continuar deixa de
 
 Entretanto: “Criticidade não deve transformar lacunas pequenas, reversíveis e não materiais em bloqueios.” Problemas menores podem ser resolvidos, registrados ou tratados como ressalvas quando não comprometem a decisão.
 
-## 14. ESCOPO TEMPORAL DO NÍVEL
+## 14. ESCOPO TEMPORAL E BASELINE
 
-Distinguir:
+Distinguir baseline persistente do escopo, padrão explicitamente definido para projeto/domínio, padrão geral vigente e override temporário. Criticidade deve integrar naturalmente o trabalho cotidiano, sem exigir comandos técnicos.
 
-### Criticidade padrão
-Comportamento geral vigente.
+Um gatilho médio ou fraco estabelece 6/10 como baseline operacional do escopo corrente quando nenhum outro nível legitimamente vigente tiver precedência. A instalação/ativação desta Skill autoriza essa política de entrada, sem exigir confirmação adicional do nível. O baseline continua nas interações relevantes subsequentes, mesmo sem novo gatilho; não retornar automaticamente a um nível inferior após a primeira resposta.
 
-### Criticidade temporária
-Aplicada apenas a uma decisão, tarefa ou análise específica.
+Manter o baseline até alteração explícita, determinação de novo padrão ou encerramento/substituição do escopo. Um override temporário suspende a aplicação do baseline durante seu escopo, mas não o apaga: terminado o override, retomar o baseline e sinalizar o retorno na próxima resposta relevante.
 
-### Criticidade por domínio ou projeto
-Padrão estabelecido explicitamente para determinado contexto.
-
-### Criticidade explicitamente redefinida
-Novo padrão determinado pela autoridade competente.
-
-Elevações temporárias expiram com seu escopo. Exemplo: “Analise esta decisão em 10/10.” → usar 10 somente nessa decisão. Não manter 10 nas tarefas seguintes. Persistência exige instrução explícita.
+“Só nesta decisão use 10/10” com baseline 6/10 → tarefa atual 10/10; tarefa seguinte 6/10. “Daqui para frente use 8/10” → novo baseline 8/10. Não converter uma alteração temporária em preferência permanente nem propagar baseline local para outros projetos.
 
 ## 15. RESOLUÇÃO DO NÍVEL ATIVO
 
-Quando houver mais de uma informação sobre criticidade, resolver o nível aplicável nesta ordem: 1. nível explicitamente solicitado para a tarefa atual; 2. nível temporário ainda vigente dentro de seu escopo; 3. nível explicitamente definido para o domínio ou projeto; 4. padrão geral vigente; 5. ausência de nível definido. Nunca transformar uma alteração temporária em preferência permanente por inferência. Quando não houver nível explícito, não inventar um número apenas para preencher estado. Usar comportamento proporcional ao contexto ou ao padrão legitimamente disponível.
+Interpretar primeiro as instruções explícitas de alteração de estado e seu escopo. Aplicar esta precedência:
 
-## 16. LINGUAGEM NATURAL
+1. nível explicitamente solicitado para a tarefa atual;
+2. override temporário ainda vigente;
+3. nível persistente explicitamente definido pelo usuário;
+4. baseline já vigente no escopo;
+5. gatilho forte com intensidade implícita;
+6. gatilho médio → 6/10;
+7. gatilho fraco → 6/10.
 
-Reconhecer formulações inequívocas como: “criticidade 8/10” → nível 8. “nível 8” → criticidade 8, quando o contexto deixar claro. “criticidade máxima” → 10/10. “faça um red team” → faixa 9–10, preferencialmente 10 quando nenhuma outra qualificação existir. “quero pouco contraponto” → reduzir criticidade de forma proporcional. “seja mais crítico” → elevar a pressão em relação ao padrão atual, sem transformar automaticamente a mudança em 10/10 permanente. Se a ambiguidade puder alterar materialmente a análise, pedir esclarecimento. Caso contrário, escolher interpretação proporcional, reversível e de menor comprometimento permanente.
+Entre padrões explícitos aplicáveis, preservar a especificidade de domínio/projeto antes do padrão geral. “Daqui para frente use 4/10” atualiza explicitamente o baseline; não é um gatilho inferior à configuração anterior. “Criticidade máxima” ou “red team” expressam intensidade inequívoca para a tarefa e devem ser reconhecidos como solicitação explícita, não ignorados por existir baseline anterior.
+
+“Revise isso” com baseline 8/10 → manter 8/10. O 6/10 é entrada automática, não teto nem substituto de outro nível vigente, inclusive de um padrão inferior explicitamente escolhido. A ausência de novo gatilho não encerra o baseline.
+
+Sem nível anterior nem gatilho pertinente, não inventar número para preencher estado; aplicar comportamento proporcional sem alegar ativação inexistente. Com gatilho médio/fraco, 6/10 tem origem nesta política explícita, não em inferência arbitrária. Encerrado/substituído um escopo, resolver o estado do novo contexto sem transportar automaticamente o baseline anterior.
+
+## 16. ACIONAMENTO EM LINGUAGEM NATURAL
+
+Tratar criticidade como recurso rotineiro de análise e decisão. Não exigir expressão técnica para ativação. Reconhecer o propósito real do pedido, não apenas palavra isolada, menção citada ou exemplo: pedido de editar a própria Skill não define, por si só, nível ativo para todas as análises.
+
+### Gatilhos fortes
+
+Reconhecer “criticidade 8/10”, “use nível 10” em contexto, “criticidade máxima”, “faça um red team”, “quero pouco contraponto”, “reduza a criticidade”, “aumente a criticidade” e “use 7/10 neste projeto”. Aplicar o número ou intensidade inequívoca correspondente; máxima → 10/10; red team sem qualificação → preferencialmente 10/10.
+
+Para pedidos relativos como “seja mais crítico”, aumentar proporcionalmente a pressão em relação ao estado atual, sem transformar automaticamente em 10/10 ou padrão permanente. Respeitar a precedência e o escopo; quando a formulação efetivamente solicitar um ajuste de nível, tratá-la como instrução de mudança, não como gatilho fraco que preservaria o número anterior por inércia. Se a ambiguidade material exigir decisão, esclarecer; nos demais casos, usar interpretação proporcional, reversível e de menor comprometimento permanente.
+
+### Gatilhos médios → entrada 6/10
+
+“confronte essa ideia”; “procure falhas”; “faça uma revisão rigorosa”; “teste as premissas”; “quero contraponto”; “analise os riscos”; “questione essa decisão”; “me diga por que isso pode estar errado”; “analise as alternativas”; “veja se isso faz sentido estrategicamente”.
+
+### Gatilhos fracos → entrada 6/10
+
+“revise isso”; “o que você acha?”; “me dê sua opinião”; “está bom?”; “isso faz sentido?”; “tem algum problema?”; “pode melhorar?”; “você concorda?”; “faça uma análise”; “me ajude a decidir”.
+
+Gatilhos médios e fracos ativam automaticamente 6/10 — análise crítica ativa — e estabelecem baseline do escopo quando não houver nível com precedência. Não perguntar qual nível o usuário deseja. Aplicar o baseline às análises relevantes seguintes, como “E essa segunda opção?”, sem exigir reativação.
 
 ## 17. PISO NÃO NEGOCIÁVEL
 
@@ -305,14 +331,26 @@ Rigor analítico e atrito operacional não são sinônimos. Princípio: “Máxi
 
 Uma análise adversarial profunda pode resultar em uma conclusão curta. Criticidade deve aumentar qualidade decisória, não burocracia.
 
-## 20. FORMATO DE SAÍDA
+## 20. SAÍDA E SINALIZAÇÃO DAS TRANSIÇÕES
 
-A Skill não deve impor template universal. Para decisões materialmente relevantes em criticidade elevada, a saída pode tender a expor: Conclusão → Premissas materiais testadas → Principal objeção → Riscos → Alternativas relevantes → Recomendação → O que mudaria a recomendação. Quando o assunto for simples, comprimir essa estrutura. Não repetir o nível de criticidade em toda resposta. Confirmá-lo brevemente apenas quando:
+Não impor template universal para a análise. Em decisões relevantes sob criticidade elevada, expor quando útil conclusão, premissas materiais testadas, principal objeção, riscos, alternativas, recomendação e o que a mudaria. Comprimir em assuntos simples.
 
-- o usuário acabou de alterá-lo;
-- houver dúvida sobre seu escopo;
-- o nível for central para a análise;
-- for necessário distinguir alteração temporária de padrão persistente.
+Sinalizar obrigatoriamente, de modo curto, quando ocorrer:
+- primeira ativação da Skill no escopo;
+- alteração do nível vigente;
+- entrada em override temporário;
+- retorno do override ao baseline;
+- necessidade real de esclarecer o estado.
+
+Cada sinalização deve conter os quatro elementos: **nível atual**, **significado resumido**, **como alterar** e **visão resumida da escala inteira**. Identificar também baseline, override ou retorno quando pertinente. Confirmar apenas o número salvo é insuficiente, inclusive em respostas de configuração sem análise substantiva.
+
+Exemplo de entrada:
+
+> Criticidade ativa: 6/10 — análise crítica ativa, baseline deste escopo. Para alterar, diga “criticidade X/10”. Escala: 1–2 baixa contestação · 3–4 colaboração crítica · 5–6 análise crítica ativa · 7–8 contraponto forte · 9–10 red team.
+
+Adaptar o exemplo ao nível real. Em override: informar o nível temporário e o baseline preservado. No retorno: sinalizar o baseline retomado na primeira resposta relevante após a expiração, evitando avisar o mesmo retorno duas vezes.
+
+Depois de estabelecer e sinalizar o estado, aplicar silenciosamente nas respostas seguintes. Não repetir o banner a cada gatilho fraco, resposta ou interação. Transparência alta com atrito baixo. Em delegação formal, a sinalização breve pode preceder os blocos vigentes sem renomeá-los nem alterar seu template.
 
 ## 21. O QUE MUDARIA A RECOMENDAÇÃO
 
@@ -371,7 +409,7 @@ Manter a implementação global, vendor-neutral, utilizável em qualquer projeto
 
 Manter distinguíveis nível, escopo, origem da instrução, vigência e condição de expiração. Esse controle pode ser contextual: não criar automaticamente arquivo, taxonomia ou registro burocrático.
 
-Usar apenas contexto ou configuração legitimamente disponível. Quando o usuário definir padrão persistente para projeto/domínio, registrá-lo na fonte de configuração autorizada apropriada se houver suporte e mandato; não transformar uma preferência local em alteração global desta Skill. Se não houver persistência entre sessões disponível, aplicar a instrução no contexto atual e informar essa limitação; não prometer memória ou configuração que não foi realmente salva. Expirar a alteração temporária ao terminar seu escopo e resolver de novo o nível para a tarefa seguinte, conforme a seção 15. Sem padrão anterior legitimamente disponível, não inventar um número de retorno.
+Usar apenas contexto ou configuração legitimamente disponível. Quando o usuário definir padrão persistente para projeto/domínio, registrá-lo na fonte de configuração autorizada apropriada se houver suporte e mandato; não transformar uma preferência local em alteração global desta Skill. Preservar baseline e sinalização no estado de projeto, conversa ou contexto realmente suportado. A origem do baseline pode ser instrução explícita ou entrada automática 6/10 por gatilho médio/fraco, sem gravar esse estado local na Skill global. Se não houver persistência entre sessões disponível, manter no contexto acessível e informar a limitação sem prometer memória ou configuração que não foi salva. Expirar o override temporário ao terminar seu escopo e retornar ao baseline preservado, sinalizando a transição conforme a seção 20. Sem baseline anterior e sem gatilho que estabeleça novo estado, não inventar número de retorno.
 
 ## 27. CRITÉRIO DE QUALIDADE FINAL
 
@@ -383,8 +421,8 @@ A criticidade existe para melhorar a qualidade das decisões, não para maximiza
 
 ## Fonte, compatibilidade e manutenção
 
-A fonte conceitual e operacional integral está em [especificacao-canonica.md](references/especificacao-canonica.md), convertida do arquivo fornecido pelo usuário em 15/10/2026. Consultá-la em dúvida material, auditoria ou atualização. A fonte versionada oficial é `Jadsonjg/delegation-context-skill`, pasta `skills/nivel-de-criticidade`.
+A fonte conceitual e operacional integral está em [especificacao-canonica.md](references/especificacao-canonica.md), convertida da especificação fornecida pelo usuário em 15/10/2026 e atualizada com a revisão de acionamento, persistência e sinalização v1.1.0. Consultá-la em dúvida material, auditoria ou atualização. A fonte versionada oficial é `Jadsonjg/delegation-context-skill`, pasta `skills/nivel-de-criticidade`.
 
 Respeitar a governança vigente de papéis, autorização, escopo, reversibilidade e risco. Ao preparar delegação formal, consultar a Delegation Context Skill vigente; esta Skill não redefine seu template nem torna o campo Criticidade obrigatório em todas as delegações.
 
-Antes de oficializar uma criação ou mudança material desta Skill, executar os 17 cenários da seção 26 e o gate da seção 31 da fonte. Essas seções são critérios de manutenção, não tarefas a repetir em cada uso. Não divulgar raciocínio privado; apresentar somente conclusões, fatos, evidências, premissas materiais, objeções e justificativas úteis.
+Antes de oficializar uma criação ou mudança material desta Skill, executar os 17 cenários originais da seção 26, os oito testes adicionais A–H da revisão 1.1.0 e o gate da seção 31 da fonte, aplicando a política de estado e sinalização vigente. Essas seções são critérios de manutenção, não tarefas a repetir em cada uso. Não divulgar raciocínio privado; apresentar somente conclusões, fatos, evidências, premissas materiais, objeções e justificativas úteis.

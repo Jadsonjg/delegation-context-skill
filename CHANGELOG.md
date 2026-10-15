@@ -2,6 +2,25 @@
 
 Registrar todas as mudanças relevantes das Skills geridas neste repositório.
 
+## Nível de Criticidade [1.1.0] — 2026-10-15
+
+### Alterado
+- Gatilhos médios e fracos de revisão, análise, opinião, validação e decisão passam a ativar automaticamente 6/10 quando não houver nível vigente com precedência.
+- O 6/10 de entrada estabelece baseline do escopo e continua nas interações relevantes seguintes, sem exigir reativação.
+- Precedência atualizada para preservar padrões explícitos e baselines vigentes; um “revise isso” não reduz 8/10 nem substitui 4/10 explicitamente escolhido.
+- Preservados overrides temporários com retorno ao baseline; “daqui para frente” redefine o baseline.
+- Sinalização obrigatória da primeira ativação, mudança, override e retorno, incluindo nível, significado, como alterar e resumo da escala; sem repetir banner continuamente.
+- O fluxo inicial verifica sinalização inclusive em configuração de estado e uso conjunto com outras Skills.
+- Atualizados metadados, fonte canônica e inventário, preservando a instalação nativa existente.
+- Mantidas as regras de dez níveis, veracidade, evidência/status, autoridade, proporcionalidade, eficiência e compatibilidade. As outras duas Skills não foram alteradas.
+
+### Validação
+- 17 testes anteriores preservados e reexecutados; oito novos A–H adicionados: **25 aprovados**.
+- Verificadas também entrada por gatilho médio, sinalização em configuração de projeto, consulta em contexto novo e compatibilidade com delegação.
+- Corrigidas omissões de sinalização observadas na primeira rodada, com rechecagem em contextos novos.
+- Persistência entre sessões continua condicionada à fonte de estado realmente disponível.
+- [Relatório 1.1.0](tests/nivel-de-criticidade/v1.1.0.md).
+
 ## Nível de Criticidade [1.0.0] — 2026-10-15
 
 ### Adicionado

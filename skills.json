@@ -25,7 +25,7 @@
     {
       "name": "nivel-de-criticidade",
       "display_name": "Nível de Criticidade",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "compatible_architecture": "Arquitetura de Trabalho Agentiva v2.0",
       "compatible_skills": {
         "agentic-workflow-governance": "2.0.0",
@@ -33,8 +33,8 @@
       },
       "native_spec": "skills/nivel-de-criticidade/SKILL.md",
       "canonical_source": "skills/nivel-de-criticidade/references/especificacao-canonica.md",
-      "validation_report": "tests/nivel-de-criticidade/v1.0.0.md",
-      "native_status": "installed_verified",
+      "validation_report": "tests/nivel-de-criticidade/v1.1.0.md",
+      "native_status": "update_prepared_pending_verification",
       "chatgpt_url": "https://chatgpt.com/skills?skill_id=6ad15379a0888191a8ff569f84eed566"
     }
   ]
