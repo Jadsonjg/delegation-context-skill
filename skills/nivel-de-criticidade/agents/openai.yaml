@@ -1,0 +1,4 @@
+interface:
+  display_name: "Nível de Criticidade"
+  short_description: "Regula de 1 a 10 o rigor crítico sem oposição artificial"
+  default_prompt: "Use $nivel-de-criticidade para analisar esta proposta em criticidade 8/10 somente nesta decisão, respeitando evidências, autoridade e proporcionalidade."

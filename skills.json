@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-11",
+  "updated_at": "2026-10-15",
   "source_of_truth": "https://github.com/Jadsonjg/delegation-context-skill",
   "manager": "Gestor de Skills — este chat, por atribuição explícita do usuário",
   "drive_required": false,
@@ -21,6 +21,21 @@
       "native_spec": "skills/agentic-workflow-governance/SKILL.md",
       "canonical_source": "skills/agentic-workflow-governance/references/especificacao-canonica.md",
       "chatgpt_url": "https://chatgpt.com/skills?skill_id=6acbe3f484b48191a13bc6797c8b6bf1"
+    },
+    {
+      "name": "nivel-de-criticidade",
+      "display_name": "Nível de Criticidade",
+      "version": "1.0.0",
+      "compatible_architecture": "Arquitetura de Trabalho Agentiva v2.0",
+      "compatible_skills": {
+        "agentic-workflow-governance": "2.0.0",
+        "delegation-context-skill": "1.1.0"
+      },
+      "native_spec": "skills/nivel-de-criticidade/SKILL.md",
+      "canonical_source": "skills/nivel-de-criticidade/references/especificacao-canonica.md",
+      "validation_report": "tests/nivel-de-criticidade/v1.0.0.md",
+      "native_status": "validated_pending_installation",
+      "chatgpt_url": null
     }
   ]
 }

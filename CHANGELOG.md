@@ -2,6 +2,25 @@
 
 Registrar todas as mudanças relevantes das Skills geridas neste repositório.
 
+## Nível de Criticidade [1.0.0] — 2026-10-15
+
+### Adicionado
+- Skill global e vendor-neutral, derivada da especificação integral fornecida pelo usuário em `Texto colado(1).txt`.
+- Dez níveis individuais de rigor adversarial, agrupados em cinco faixas sem reduzir a escala a cinco modos.
+- Separação entre criticidade, discordância, raciocínio, confiança, tom, extensão, detalhamento, pessimismo e autoridade.
+- Tentativa de falsificação proporcional ao impacto, reversibilidade, incerteza, alcance e custo de correção.
+- Disciplina de evidência/status, efeitos de segunda ordem, proteção de decisões aprovadas e parada/escalada por problema material.
+- Resolução do nível por tarefa, temporário, domínio/projeto e padrão geral; expiração explícita e ausência de número inventado.
+- Persistência apenas em fonte apropriada autorizada quando houver suporte; sem promessa de memória não registrada.
+- Piso de segurança, veracidade e governança em todos os níveis, inclusive 1/10; aprovação integral de boa solução permitida em 10/10.
+- Compatibilidade com Arquitetura de Trabalho Agentiva v2.0, Agentic Workflow Governance 2.0.0 e Delegation Context Skill 1.1.0, sem alterar essas Skills.
+
+### Validação
+- Executados os 17 cenários obrigatórios, com respostas observadas em contextos isolados e sequências de tarefas.
+- Incluídas consulta efetiva de fonte sintética, expiração em duas sequências e recuperação de padrão de projeto em contexto novo.
+- Resultado: 17 aprovados. Calibração dos dez níveis, preservação da fonte e integridade das Skills existentes também conferidas.
+- [Evidências e limites da validação](tests/nivel-de-criticidade/v1.0.0.md).
+
 ## Agentic Workflow Governance [2.0.0] — 2026-10-11
 
 ### Alterado

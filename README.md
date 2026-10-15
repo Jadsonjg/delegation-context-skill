@@ -1,6 +1,6 @@
 # Gestão de Skills
 
-Fonte oficial das Skills **Delegation Context Skill** e **Agentic Workflow Governance**.
+Fonte oficial das Skills **Delegation Context Skill**, **Agentic Workflow Governance** e **Nível de Criticidade**.
 O endereço histórico do repositório foi mantido para preservar os links existentes.
 
 ## Inventário
@@ -9,6 +9,7 @@ O endereço histórico do repositório foi mantido para preservar os links exist
 | --- | --- | --- | --- | --- |
 | Delegation Context Skill | 1.1.0 | [SKILL.md](SKILL.md) | Interface de delegação vigente | [ChatGPT](https://chatgpt.com/skills?skill_id=6acbd243c8088191b2e61b170ec6779c) |
 | Agentic Workflow Governance | 2.0.0 | [Especificação canônica](skills/agentic-workflow-governance/references/especificacao-canonica.md) e [SKILL.md](skills/agentic-workflow-governance/SKILL.md) | Arquitetura de Trabalho Agentiva v2.0 | [ChatGPT](https://chatgpt.com/skills?skill_id=6acbe3f484b48191a13bc6797c8b6bf1) |
+| Nível de Criticidade | 1.0.0 | [Especificação canônica](skills/nivel-de-criticidade/references/especificacao-canonica.md) e [SKILL.md](skills/nivel-de-criticidade/SKILL.md) | Arquitetura de Trabalho Agentiva v2.0; governança 2.0.0 e delegação 1.1.0 | Validação concluída; instalação pendente |
 
 [skills.json](skills.json) registra caminhos, versões e compatibilidade para conferência.
 
@@ -65,6 +66,16 @@ Os três campos são sempre obrigatórios na versão 1.1.0, inclusive em tarefas
 A Agentic Workflow Governance não congela nem duplica internamente esse template: ela define autoridade, roteamento, fontes e gates; a Delegation Context Skill define a forma vigente da delegação.
 
 As Skills não substituem uma à outra e não precisam transformar conversas triviais em workflow formal.
+
+### Nível de Criticidade
+
+Regula de 1 a 10 o rigor adversarial aplicado a premissas, propostas, decisões, planos, execuções e resultados. Cada nível possui calibração própria, dentro de cinco faixas, sem quota de objeções nem obrigação de discordar.
+
+Criticidade não equivale a profundidade de raciocínio, confiança, autoridade, tom ou extensão da resposta. Uma boa decisão pode ser aprovada em 10/10; um fato falso não pode ser validado em 1/10.
+
+Resolver o nível ativo pela ordem: tarefa atual → temporário ainda vigente → projeto/domínio → padrão geral vigente → ausência de nível definido. Alterações temporárias expiram com seu escopo. Sem nível legítimo, não inventar número. Persistência entre sessões depende de uma fonte de configuração autorizada acessível; não é garantida pela mera instalação da Skill.
+
+A Skill respeita Agentic Workflow Governance e não substitui nem redefine o template da Delegation Context Skill. [Relatório dos 17 cenários](tests/nivel-de-criticidade/v1.0.0.md).
 
 ## Compatibilidade com a Arquitetura de Trabalho Agentiva
 
